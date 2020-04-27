@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+:root {
+    --main-color: #003242;
+    --secondary-color: #ECECEC;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Montserrat";
+  }
+
+  .header {
+    grid-area: header;
+    background-color: var(--main-color);
+    color: var(--secondary-color)
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    overflow: auto;
+  }
+
+  form  {
+      display: block;
+  }
+  .filter-description {
+      font-size: 0.8rem;
+  }
+  #stats-container {
+    margin-top: 10px;
+    padding: 1px 30px;
+    background-color: var(--main-color);
+    box-shadow: -2px 0px 8px 0px #121212;
+    color: var(--secondary-color)
+  }
+
+  .map {
+    grid-area: map;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-rows: 10%  25% auto;
+    grid-template-areas:
+     "header"
+     "sidebar"
+     "map";
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .box {
+    padding: 10px;
+    font-size: 20px; 
+  }
+
+  @media only screen and (min-width: 800px)  {
+    .wrapper {
+      grid-template-columns: 40% auto;
+      grid-template-rows: 60px  auto;
+      grid-template-areas:
+        "header   header"
+        "sidebar  map";
+      }
+    }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="App Design and CSS - Layout Partial Page CSS Grid">
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>City Park Survey - Park Filtering</title>
+  
+  <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <script src="https://js.arcgis.com/4.15/"></script>
+  <script src='./app.js' defer></script>
+
+</head>
+<body>
+  <div class="wrapper">
+    <div class="box header" id="titleDiv">Park Filtering for City Park Survey</div>
+    <div class="box sidebar">
+        <div class="container" id="filter-container">
+            <h2>Filters</h2>
+            <form id="filter-form">
+                <div class="filter-option-container">
+                    <input type="radio" name="filters" id="full-system" value="full" checked>
+                    <label for="full-system">Full System</label>
+                    <p class="filter-description">The full inventory of park properties maintained by PRCR. This does not include Greenway easements.</p>
+                </div>
+                <div class="filter-option-container">
+                    <input type="radio" name="filters" id="attr-filter" value="attr">
+                    <label for="attr-filter">Filter by Attributes</label>
+                    <p class="filter-description">Highlight parks that are either 1) not a part of PRCR's open space inventory or 2) a FEMA Lot.</p>
+                </div>
+                <div class="filter-option-container">
+                    <input type="radio" name="filters" id="spatial-filter" value="spatial">
+                    <label for="spatial-filter">Filter by City Limits</label>
+                    <p class="filter-description">
+                        Highlight portions of parks that are outside city limits.
+                    </p>
+                </div>
+                <div class="filter-option-container">
+                    <input type="radio" name="filters" id="filter-unfiltered" value="fuf">
+                    <label for="filter-unfiltered">Parks by Filter Status</label>
+                    <p class="filter-description">
+                        All portions of parks, highlighting those areas included in CPS acreage and those areas excluded from CPS acreage.
+                    </p>
+                </div>
+                <div class="filter-option-container">
+                    <input type="radio" name="filters" id="cps-parks" value="cps">
+                    <label for="cps-parks">Reported Parks</label>
+                    <p class="filter-description">
+                        Only portions of park properties that are included for reporting acreage for CPS.
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="container" id="stats-container">
+            <h2>Acreage</h2>
+            <ul id="acreage-list">
+            </ul>
+        </div>
+    </div>
+
+    <div class="map" id="viewDiv"></div>
+  </div>
+</body>
+</html>
