@@ -10,22 +10,22 @@ require([
 ], function(Portal, OAuthInfo, esriId, PortalQueryParams, WebMap, MapView, Bookmarks, Expand) {
 
     
-    let info = new OAuthInfo({
-        // Swap this ID out with registered application ID
-        appId: "XP6yuXAzKGZF6Ym5",
-        // Uncomment the next line and update if using your own portal
-        // portalUrl: "https://ral.maps.arcgis.com/arcgis"
-        // Uncomment the next line to prevent the user's signed in state from being shared with other apps on the same domain with the same authNamespace value.
-        // authNamespace: "portal_oauth_inline",
-        popup: false
-    });
+    // let info = new OAuthInfo({
+    //     // Swap this ID out with registered application ID
+    //     appId: "XP6yuXAzKGZF6Ym5",
+    //     // Uncomment the next line and update if using your own portal
+    //     // portalUrl: "https://ral.maps.arcgis.com/arcgis"
+    //     // Uncomment the next line to prevent the user's signed in state from being shared with other apps on the same domain with the same authNamespace value.
+    //     // authNamespace: "portal_oauth_inline",
+    //     popup: false
+    // });
 
-    esriId.registerOAuthInfos([info]);
-    esriId
-    .checkSignInStatus(info.portalUrl + "/sharing")
-    .catch(/*give user an option to sign in*/);
+    // esriId.registerOAuthInfos([info]);
+    // esriId
+    // .checkSignInStatus(info.portalUrl + "/sharing")
+    // .catch(/*give user an option to sign in*/);
 
-    esriId.getCredential(info.portalUrl + "/sharing");
+    // esriId.getCredential(info.portalUrl + "/sharing");
 
   let map = new WebMap({
       portalItem: {
