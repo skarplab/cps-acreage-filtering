@@ -7,8 +7,9 @@ require([
     "esri/views/MapView",
     "esri/widgets/Bookmarks",
     "esri/widgets/LayerList",
+    "esri/widgets/Legend",
     "esri/widgets/Expand"
-], function(Portal, OAuthInfo, esriId, PortalQueryParams, WebMap, MapView, Bookmarks, LayerList, Expand) {
+], function(Portal, OAuthInfo, esriId, PortalQueryParams, WebMap, MapView, Bookmarks, LayerList, Legend, Expand) {
 
     
     // let info = new OAuthInfo({
@@ -81,6 +82,16 @@ require([
     });
     view.ui.add(llExpand, "top-right");
     
+    const legend = new Legend({
+        view: view
+    })
+    const legendExpand = new Expand({
+        view: view,
+        content: legend,
+        expanded:false
+    })
+    view.ui.add(legendExpand, "top-right")
+    
     const bookmarks = new Bookmarks({
         view: view
     });
@@ -103,7 +114,6 @@ filterOptions.forEach(option => option.addEventListener('change', () => {
     statsQuery.groupByFieldsForStatistics = activeFilterStateInfos.groupByFieldsForStatistics
     parksLayer.queryFeatures(statsQuery)
         .then(response => {
-            console.log(response.features)
             let queryResults = response.features
             if (option.value === 'full' | option.value === 'cps') {
                 acreageListEl.innerHTML = `
