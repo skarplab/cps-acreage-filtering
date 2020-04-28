@@ -6,8 +6,9 @@ require([
     "esri/WebMap",
     "esri/views/MapView",
     "esri/widgets/Bookmarks",
+    "esri/widgets/LayerList",
     "esri/widgets/Expand"
-], function(Portal, OAuthInfo, esriId, PortalQueryParams, WebMap, MapView, Bookmarks, Expand) {
+], function(Portal, OAuthInfo, esriId, PortalQueryParams, WebMap, MapView, Bookmarks, LayerList, Expand) {
 
     
     // let info = new OAuthInfo({
@@ -34,6 +35,7 @@ require([
   });
 
   let parksLayer;
+  let gwLayer;
 
   
   let view = new MapView({
@@ -42,7 +44,20 @@ require([
     });
 
     view.when(function () {
-        parksLayer = map.layers.items[1];
+        //############
+        //## Layers ##
+        //############
+        parksLayer = map.allLayers.find(layer => {
+            if (layer.title === 'All Raleigh Park Properties') {
+                return layer
+            }
+        });
+
+        gwLayer = map.allLayers.find(layer => {
+            if (layer.title === 'Raleigh Greenways') {
+                return layer
+            }
+        });
 
         let initialStatsQuery = parksLayer.createQuery()
         initialStatsQuery.where = filterStateInfos.full.query;
@@ -56,16 +71,25 @@ require([
             })
     })
 
-  const bookmarks = new Bookmarks({
-      view: view
-  });
-  const bkExpand = new Expand({
-      view: view,
-      content: bookmarks,
-      expanded: false
-  });
-
-view.ui.add(bkExpand, "top-right");
+    const layerList = new LayerList({
+        view: view
+    });
+    const llExpand = new Expand({
+        view: view,
+        content: layerList,
+        expanded: false
+    });
+    view.ui.add(llExpand, "top-right");
+    
+    const bookmarks = new Bookmarks({
+        view: view
+    });
+    const bkExpand = new Expand({
+        view: view,
+        content: bookmarks,
+        expanded: false
+    });
+    view.ui.add(bkExpand, "top-right");
 
 
 filterOptions.forEach(option => option.addEventListener('change', () => {
