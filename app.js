@@ -102,6 +102,8 @@ require([
     });
     view.ui.add(bkExpand, "top-right");
 
+    view.popup.dockOptions.position = "bottom-right";
+
 
 filterOptions.forEach(option => option.addEventListener('change', () => {
     activeFilterStateInfos = filterStateInfos[option.value] 
